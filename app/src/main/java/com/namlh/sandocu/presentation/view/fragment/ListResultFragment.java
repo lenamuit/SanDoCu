@@ -1,4 +1,4 @@
-package com.namlh.sandocu.fragment;
+package com.namlh.sandocu.presentation.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.namlh.sandocu.R;
-import com.namlh.sandocu.otto.OnTestBus;
+import com.namlh.sandocu.presentation.otto.OnTestBus;
 
 import butterknife.OnClick;
 

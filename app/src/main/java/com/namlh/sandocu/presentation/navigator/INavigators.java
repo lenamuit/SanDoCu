@@ -1,4 +1,4 @@
-package com.namlh.sandocu.navigator;
+package com.namlh.sandocu.presentation.navigator;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package com.namlh.sandocu.internal;
+package com.namlh.sandocu.presentation.internal;
 
 /**
  * Created by namlh on 01/08/2015.

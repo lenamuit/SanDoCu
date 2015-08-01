@@ -1,10 +1,10 @@
-package com.namlh.sandocu;
+package com.namlh.sandocu.presentation;
 
 import android.app.Application;
 
-import com.namlh.sandocu.component.ApplicationComponent;
-import com.namlh.sandocu.component.DaggerApplicationComponent;
-import com.namlh.sandocu.module.ApplicationModule;
+import com.namlh.sandocu.presentation.internal.component.ApplicationComponent;
+import com.namlh.sandocu.presentation.internal.component.DaggerApplicationComponent;
+import com.namlh.sandocu.presentation.internal.module.ApplicationModule;
 
 /**
  * Created by namlh on 01/08/2015.

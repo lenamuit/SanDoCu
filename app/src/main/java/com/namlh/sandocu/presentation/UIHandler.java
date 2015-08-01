@@ -1,4 +1,4 @@
-package com.namlh.sandocu;
+package com.namlh.sandocu.presentation;
 
 import android.os.Handler;
 import android.os.Looper;

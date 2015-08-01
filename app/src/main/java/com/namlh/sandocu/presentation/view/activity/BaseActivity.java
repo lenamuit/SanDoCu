@@ -1,11 +1,11 @@
-package com.namlh.sandocu.activity;
+package com.namlh.sandocu.presentation.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.namlh.sandocu.MainApplication;
-import com.namlh.sandocu.component.ApplicationComponent;
-import com.namlh.sandocu.navigator.INavigators;
+import com.namlh.sandocu.presentation.MainApplication;
+import com.namlh.sandocu.presentation.internal.component.ApplicationComponent;
+import com.namlh.sandocu.presentation.navigator.INavigators;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;

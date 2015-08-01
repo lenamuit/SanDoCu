@@ -1,11 +1,9 @@
-package com.namlh.sandocu.navigator;
+package com.namlh.sandocu.presentation.navigator;
 
 import android.content.Context;
 import android.content.Intent;
 
-import com.namlh.sandocu.activity.ListResultActivity;
-
-import javax.inject.Inject;
+import com.namlh.sandocu.presentation.view.activity.ListResultActivity;
 
 /**
  * Created by namlh on 02/08/2015.

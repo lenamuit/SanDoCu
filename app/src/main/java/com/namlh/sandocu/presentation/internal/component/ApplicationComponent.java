@@ -1,12 +1,9 @@
-package com.namlh.sandocu.component;
+package com.namlh.sandocu.presentation.internal.component;
 
-import android.app.Activity;
-import android.os.Handler;
-
-import com.namlh.sandocu.activity.BaseActivity;
-import com.namlh.sandocu.fragment.BaseFragment;
-import com.namlh.sandocu.module.ApplicationModule;
-import com.namlh.sandocu.navigator.INavigators;
+import com.namlh.sandocu.presentation.internal.module.ApplicationModule;
+import com.namlh.sandocu.presentation.navigator.INavigators;
+import com.namlh.sandocu.presentation.view.activity.BaseActivity;
+import com.namlh.sandocu.presentation.view.fragment.BaseFragment;
 import com.squareup.otto.Bus;
 
 import javax.inject.Singleton;

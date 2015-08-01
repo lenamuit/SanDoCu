@@ -1,4 +1,4 @@
-package com.namlh.sandocu.activity;
+package com.namlh.sandocu.presentation.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.namlh.sandocu.R;
-import com.namlh.sandocu.otto.OnTestBus;
+import com.namlh.sandocu.presentation.otto.OnTestBus;
 import com.squareup.otto.Subscribe;
 
 /**
@@ -15,6 +15,12 @@ import com.squareup.otto.Subscribe;
 public class ListResultActivity extends BaseActivity {
 
     private static final String KEYWORD = "key_word";
+
+    public static Intent getCallingIntent(Context context, String keyword) {
+        Intent intent = new Intent(context, ListResultActivity.class);
+        intent.putExtra(KEYWORD, keyword);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +31,5 @@ public class ListResultActivity extends BaseActivity {
     @Subscribe
     public void onTestBus(OnTestBus test){
         Toast.makeText(this,"Test Bus",Toast.LENGTH_LONG).show();
-    }
-
-    public static Intent getCallingIntent(Context context, String keyword) {
-        Intent intent = new Intent(context,ListResultActivity.class);
-        intent.putExtra(KEYWORD, keyword);
-        return intent;
     }
 }

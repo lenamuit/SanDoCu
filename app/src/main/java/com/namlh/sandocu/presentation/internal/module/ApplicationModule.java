@@ -1,14 +1,8 @@
-package com.namlh.sandocu.module;
+package com.namlh.sandocu.presentation.internal.module;
 
-import android.app.Application;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-
-import com.namlh.sandocu.MainApplication;
-import com.namlh.sandocu.UIHandler;
-import com.namlh.sandocu.navigator.INavigators;
-import com.namlh.sandocu.navigator.Navigators;
+import com.namlh.sandocu.presentation.MainApplication;
+import com.namlh.sandocu.presentation.navigator.INavigators;
+import com.namlh.sandocu.presentation.navigator.Navigators;
 import com.squareup.otto.Bus;
 import com.squareup.otto.ThreadEnforcer;
 

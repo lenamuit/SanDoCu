@@ -1,4 +1,4 @@
-package com.namlh.sandocu.otto;
+package com.namlh.sandocu.presentation.otto;
 
 /**
  * Created by namlh on 02/08/2015.

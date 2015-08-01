@@ -1,15 +1,14 @@
-package com.namlh.sandocu.fragment;
+package com.namlh.sandocu.presentation.view.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.namlh.sandocu.MainApplication;
-import com.namlh.sandocu.activity.BaseActivity;
-import com.namlh.sandocu.component.ApplicationComponent;
-import com.namlh.sandocu.internal.HasComponent;
-import com.namlh.sandocu.navigator.INavigators;
+import com.namlh.sandocu.presentation.MainApplication;
+import com.namlh.sandocu.presentation.internal.component.ApplicationComponent;
+import com.namlh.sandocu.presentation.navigator.INavigators;
+import com.namlh.sandocu.presentation.view.activity.BaseActivity;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
