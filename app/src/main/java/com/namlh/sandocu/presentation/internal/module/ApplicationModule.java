@@ -1,6 +1,10 @@
 package com.namlh.sandocu.presentation.internal.module;
 
+import com.namlh.sandocu.data.reponsitory.JobExecutor;
+import com.namlh.sandocu.domain.executor.PostExecutionThread;
+import com.namlh.sandocu.domain.executor.ThreadExecutor;
 import com.namlh.sandocu.presentation.MainApplication;
+import com.namlh.sandocu.presentation.UIThread;
 import com.namlh.sandocu.presentation.navigator.INavigators;
 import com.namlh.sandocu.presentation.navigator.Navigators;
 import com.squareup.otto.Bus;
@@ -36,5 +40,17 @@ public class ApplicationModule {
     @Provides @Singleton
     public INavigators provideNavigator(){
         return new Navigators();
+    }
+
+    @Provides
+    @Singleton
+    ThreadExecutor provideThreadExecutor(JobExecutor jobExecutor) {
+        return jobExecutor;
+    }
+
+    @Provides
+    @Singleton
+    PostExecutionThread providePostExecutionThread(UIThread uiThread) {
+        return uiThread;
     }
 }
