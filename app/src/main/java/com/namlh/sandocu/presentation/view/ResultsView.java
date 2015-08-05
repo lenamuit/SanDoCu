@@ -7,7 +7,7 @@ import java.util.Collection;
 /**
  * Created by namlh on 03/08/2015.
  */
-public interface ListResultView extends LoadDataView {
+public interface ResultsView extends LoadDataView {
 
     void renderData(Collection<ResultObj> data);
 

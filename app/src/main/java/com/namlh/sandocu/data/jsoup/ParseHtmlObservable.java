@@ -1,6 +1,5 @@
 package com.namlh.sandocu.data.jsoup;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
@@ -12,27 +11,22 @@ import rx.Subscriber;
 /**
  * Created by namlh on 04/08/2015.
  */
-public class ParseHtmlObservable implements Observable.OnSubscribe<Elements> {
+public abstract class ParseHtmlObservable implements Observable.OnSubscribe<Elements> {
 
-    private final String url;
-    private final String filter;
+    private String keyword;
 
-    ParseHtmlObservable(String url, String filter) {
-        this.url = url;
-        this.filter = filter;
+    ParseHtmlObservable() {
     }
 
-    public static Observable<Elements> get(String url, String filter) {
-        return Observable.create(new ParseHtmlObservable(url, filter));
-    }
+    public abstract Document getDocument(String keyword) throws IOException;
+
+    public abstract String getCssFilter();
 
     @Override
     public void call(Subscriber<? super Elements> subscriber) {
-        Document doc = null;
         try {
             subscriber.onStart();
-            doc = Jsoup.connect(url).get();
-            Elements newsHeadlines = doc.select(filter);
+            Elements newsHeadlines = getDocument(keyword).select(getCssFilter());
             subscriber.onNext(newsHeadlines);
             subscriber.onCompleted();
         } catch (IOException e) {
@@ -40,4 +34,10 @@ public class ParseHtmlObservable implements Observable.OnSubscribe<Elements> {
             subscriber.onError(e);
         }
     }
+
+    public Observable<Elements> get(String keyword) {
+        this.keyword = keyword;
+        return Observable.create(this);
+    }
+
 }

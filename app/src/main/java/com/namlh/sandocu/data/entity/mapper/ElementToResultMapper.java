@@ -1,6 +1,6 @@
 package com.namlh.sandocu.data.entity.mapper;
 
-import com.namlh.sandocu.domain.SearchResultItem;
+import com.namlh.sandocu.domain.ResultItem;
 
 import org.jsoup.select.Elements;
 
@@ -18,8 +18,8 @@ public class ElementToResultMapper {
 
     }
 
-    public SearchResultItem tranform(Elements elements) {
-        SearchResultItem item = new SearchResultItem();
+    public ResultItem tranform(Elements elements) {
+        ResultItem item = new ResultItem();
         return item;
     }
 

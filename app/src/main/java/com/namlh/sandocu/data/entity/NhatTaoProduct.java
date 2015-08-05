@@ -1,19 +1,19 @@
 package com.namlh.sandocu.data.entity;
 
-import org.joda.time.DateTime;
-
 /**
  * Created by namlh on 04/08/2015.
  */
-public class NhatTaoProduct {
+public class NhatTaoProduct implements Product {
 
     private String title;
     private double price;
     private String inForum;
-    private DateTime dateTime;
     private String status;
+    private String location;
+    private String dateTime;
+    private String link;
 
-
+    @Override
     public String getTitle() {
         return title;
     }
@@ -30,6 +30,29 @@ public class NhatTaoProduct {
         this.price = price;
     }
 
+    @Override
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    @Override
+    public String getTime() {
+        return dateTime;
+    }
+
+    @Override
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
     public String getInForum() {
         return inForum;
     }
@@ -38,19 +61,15 @@ public class NhatTaoProduct {
         this.inForum = inForum;
     }
 
-    public DateTime getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(DateTime dateTime) {
-        this.dateTime = dateTime;
-    }
-
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 }
