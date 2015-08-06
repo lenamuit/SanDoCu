@@ -1,5 +1,10 @@
 package com.namlh.sandocu.presentation.internal.component;
 
+import android.content.Context;
+
+import com.namlh.sandocu.domain.executor.PostExecutionThread;
+import com.namlh.sandocu.domain.executor.ThreadExecutor;
+import com.namlh.sandocu.domain.reponsitory.ResultsRepository;
 import com.namlh.sandocu.presentation.internal.module.ApplicationModule;
 import com.namlh.sandocu.presentation.navigator.INavigators;
 import com.namlh.sandocu.presentation.view.activity.BaseActivity;
@@ -20,4 +25,12 @@ public interface ApplicationComponent {
     void inject(BaseFragment activity);
     Bus bus();
     INavigators navigator();
+
+    Context context();
+
+    ThreadExecutor threadExcutor();
+
+    PostExecutionThread postExecutionThread();
+
+    ResultsRepository resultsRepository();
 }

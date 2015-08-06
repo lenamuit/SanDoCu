@@ -1,21 +1,20 @@
 package com.namlh.sandocu.presentation.model;
 
-import java.util.Date;
-
 /**
  * Created by namlh on 03/08/2015.
  */
-public class ResultObj {
+public class ResultViewModel {
 
     private String title;
     private double price;
-    private Date dateTime;
+    private String dateTime;
+    private String location;
 
-    public Date getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -33,5 +32,18 @@ public class ResultObj {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    @Override
+    public String toString() {
+        return title;
     }
 }

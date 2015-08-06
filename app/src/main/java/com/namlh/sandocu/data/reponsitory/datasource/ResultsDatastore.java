@@ -2,6 +2,8 @@ package com.namlh.sandocu.data.reponsitory.datasource;
 
 import com.namlh.sandocu.data.entity.Product;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -20,7 +22,7 @@ public class ResultsDatastore {
         this.nhatTao = nhatTaoDatasource;
     }
 
-    public Observable<Product> getResult(String keyword) {
+    public Observable<List<Product>> getResult(String keyword) {
         return nhatTao.getResult(keyword);
     }
 

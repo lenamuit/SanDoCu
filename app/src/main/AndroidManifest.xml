@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.namlh.sandocu" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name=".presentation.MainApplication"
         android:allowBackup="true"

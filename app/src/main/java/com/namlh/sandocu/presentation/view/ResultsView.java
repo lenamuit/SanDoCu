@@ -1,6 +1,6 @@
 package com.namlh.sandocu.presentation.view;
 
-import com.namlh.sandocu.presentation.model.ResultObj;
+import com.namlh.sandocu.presentation.model.ResultViewModel;
 
 import java.util.Collection;
 
@@ -9,8 +9,8 @@ import java.util.Collection;
  */
 public interface ResultsView extends LoadDataView {
 
-    void renderData(Collection<ResultObj> data);
+    void renderData(Collection<ResultViewModel> data);
 
-    void viewDetail(ResultObj resultObj);
+    void viewDetail(ResultViewModel resultViewModel);
 
 }

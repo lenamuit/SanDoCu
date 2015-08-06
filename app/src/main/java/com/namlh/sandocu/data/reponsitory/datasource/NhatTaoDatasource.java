@@ -27,7 +27,7 @@ public class NhatTaoDatasource {
         this.parseNhatTao = parseNhatTaoObservable;
     }
 
-    public Observable<Product> getResult(String keyword) {
+    public Observable<List<Product>> getResult(String keyword) {
         return parseNhatTao.get(keyword)
                 .map(elements -> {
                     List<Product> products = new ArrayList<>();
@@ -37,10 +37,10 @@ public class NhatTaoDatasource {
                         product.setDateTime(getDateTime(e));
                         product.setLocation(getLocation(e));
                         product.setLink(getLink(e));
+                        products.add(product);
                     }
                     return products;
-                })
-                .flatMap(Observable::from);
+                });
     }
 
     private String getLink(Element e) {

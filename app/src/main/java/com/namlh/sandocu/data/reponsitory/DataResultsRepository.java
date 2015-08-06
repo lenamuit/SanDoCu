@@ -1,8 +1,12 @@
 package com.namlh.sandocu.data.reponsitory;
 
+import com.namlh.sandocu.data.entity.Product;
 import com.namlh.sandocu.data.reponsitory.datasource.ResultsDatastore;
 import com.namlh.sandocu.domain.ResultItem;
 import com.namlh.sandocu.domain.reponsitory.ResultsRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -24,9 +28,20 @@ public class DataResultsRepository implements ResultsRepository {
 
 
     @Override
-    public Observable<ResultItem> getResults(String keyword) {
+    public Observable<List<ResultItem>> getResults(String keyword) {
 
         return datastore.getResult(keyword)
-                .map(ResultItem::new);
+                .map(products -> {
+                    List<ResultItem> results = new ArrayList<>();
+                    for (Product product : products) {
+                        ResultItem item = new ResultItem();
+                        item.setTitle(product.getTitle());
+                        item.setLink(product.getLink());
+                        item.setDateTime(product.getTime());
+                        item.setLocation(product.getLocation());
+                        results.add(item);
+                    }
+                    return results;
+                });
     }
 }

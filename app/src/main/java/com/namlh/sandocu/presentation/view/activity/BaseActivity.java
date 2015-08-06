@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.namlh.sandocu.presentation.MainApplication;
 import com.namlh.sandocu.presentation.internal.component.ApplicationComponent;
+import com.namlh.sandocu.presentation.internal.module.ActivityModule;
 import com.namlh.sandocu.presentation.navigator.INavigators;
 import com.squareup.otto.Bus;
 
@@ -43,5 +44,9 @@ public abstract class BaseActivity extends AppCompatActivity{
 
     protected ApplicationComponent getApplicationComponent(){
         return ((MainApplication) getApplication()).getApplicationComponent();
+    }
+
+    protected ActivityModule getActivityModule() {
+        return new ActivityModule(this);
     }
 }

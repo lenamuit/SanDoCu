@@ -1,8 +1,13 @@
 package com.namlh.sandocu.presentation.internal.module;
 
-import com.namlh.sandocu.data.reponsitory.JobExecutor;
+import android.content.Context;
+
+import com.namlh.sandocu.data.excutor.JobExecutor;
+import com.namlh.sandocu.data.reponsitory.DataResultsRepository;
+import com.namlh.sandocu.data.reponsitory.datasource.ResultsDatastore;
 import com.namlh.sandocu.domain.executor.PostExecutionThread;
 import com.namlh.sandocu.domain.executor.ThreadExecutor;
+import com.namlh.sandocu.domain.reponsitory.ResultsRepository;
 import com.namlh.sandocu.presentation.MainApplication;
 import com.namlh.sandocu.presentation.UIThread;
 import com.namlh.sandocu.presentation.navigator.INavigators;
@@ -33,7 +38,7 @@ public class ApplicationModule {
     }
 
     @Provides @Singleton
-    public MainApplication provideApplication(){
+    public Context provideContext() {
         return application;
     }
 
@@ -44,13 +49,19 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    ThreadExecutor provideThreadExecutor(JobExecutor jobExecutor) {
+    public ThreadExecutor provideThreadExecutor(JobExecutor jobExecutor) {
         return jobExecutor;
     }
 
     @Provides
     @Singleton
-    PostExecutionThread providePostExecutionThread(UIThread uiThread) {
+    public PostExecutionThread providePostExecutionThread(UIThread uiThread) {
         return uiThread;
+    }
+
+    @Provides
+    @Singleton
+    public ResultsRepository provideResultRepository(ResultsDatastore dataStore) {
+        return new DataResultsRepository(dataStore);
     }
 }
