@@ -5,6 +5,7 @@ import com.namlh.sandocu.data.entity.Product;
 import com.namlh.sandocu.data.jsoup.ParseNhatTaoObservable;
 
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * Created by namlh on 05/08/2015.
@@ -29,17 +31,20 @@ public class NhatTaoDatasource {
 
     public Observable<List<Product>> getResult(String keyword) {
         return parseNhatTao.get(keyword)
-                .map(elements -> {
-                    List<Product> products = new ArrayList<>();
-                    for (Element e : elements) {
-                        NhatTaoProduct product = new NhatTaoProduct();
-                        product.setTitle(getTitle(e));
-                        product.setDateTime(getDateTime(e));
-                        product.setLocation(getLocation(e));
-                        product.setLink(getLink(e));
-                        products.add(product);
+                .map(new Func1<Elements, List<Product>>() {
+                    @Override
+                    public List<Product> call(Elements elements) {
+                        List<Product> products = new ArrayList<>();
+                        for (Element e : elements) {
+                            NhatTaoProduct product = new NhatTaoProduct();
+                            product.setTitle(getTitle(e));
+                            product.setDateTime(getDateTime(e));
+                            product.setLocation(getLocation(e));
+                            product.setLink(getLink(e));
+                            products.add(product);
+                        }
+                        return products;
                     }
-                    return products;
                 });
     }
 

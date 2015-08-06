@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * Created by namlh on 05/08/2015.
@@ -31,17 +32,20 @@ public class DataResultsRepository implements ResultsRepository {
     public Observable<List<ResultItem>> getResults(String keyword) {
 
         return datastore.getResult(keyword)
-                .map(products -> {
-                    List<ResultItem> results = new ArrayList<>();
-                    for (Product product : products) {
-                        ResultItem item = new ResultItem();
-                        item.setTitle(product.getTitle());
-                        item.setLink(product.getLink());
-                        item.setDateTime(product.getTime());
-                        item.setLocation(product.getLocation());
-                        results.add(item);
+                .map(new Func1<List<Product>, List<ResultItem>>() {
+                    @Override
+                    public List<ResultItem> call(List<Product> products) {
+                        List<ResultItem> results = new ArrayList<>();
+                        for (Product product : products) {
+                            ResultItem item = new ResultItem();
+                            item.setTitle(product.getTitle());
+                            item.setLink(product.getLink());
+                            item.setDateTime(product.getTime());
+                            item.setLocation(product.getLocation());
+                            results.add(item);
+                        }
+                        return results;
                     }
-                    return results;
                 });
     }
 }
