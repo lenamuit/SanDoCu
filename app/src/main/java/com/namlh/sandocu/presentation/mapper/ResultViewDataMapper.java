@@ -16,7 +16,7 @@ public class ResultViewDataMapper {
     }
 
     public ResultViewModel tranform(ResultItem resultItem) {
-        ResultViewModel model = new ResultViewModel();
+        ResultViewModel model = new ResultViewModel(resultItem.getTitle(), 0, resultItem.getDateTime(), resultItem.getLocation(), resultItem.getLink());
         return model;
     }
 }

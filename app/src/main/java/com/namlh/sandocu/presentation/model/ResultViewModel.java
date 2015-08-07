@@ -5,45 +5,22 @@ package com.namlh.sandocu.presentation.model;
  */
 public class ResultViewModel {
 
-    private String title;
-    private double price;
-    private String dateTime;
-    private String location;
+    public final String title;
+    public final double price;
+    public final String dateTime;
+    public final String location;
+    public final String link;
 
-    public String getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
+    public ResultViewModel(String title, double price, String dateTime, String location, String link) {
         this.title = title;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
+        this.price = price;
+        this.dateTime = dateTime;
         this.location = location;
+        this.link = link;
     }
-
     @Override
     public String toString() {
         return title;
     }
+
 }

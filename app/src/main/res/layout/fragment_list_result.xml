@@ -2,13 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="List result"/>
-    <Button
-        android:id="@+id/btn_test_bus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="test bus"/>
+        android:layout_height="match_parent"/>
 </LinearLayout>
