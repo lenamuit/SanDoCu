@@ -30,10 +30,10 @@ public class FindResult extends UseCase<ResultItem> {
 
     @Override
     protected Observable<ResultItem> buildUseCaseObservable() {
-        return resultRepository.getResults("nexus")
+        return resultRepository.getResults(preference.getKeyword())
                 .flatMap(Observable::<ResultItem>from)
-//                .filter(resultItem -> resultItem.getTimeInMillisecond() > preference.getLastestUpdateTime())
-                .limit(5);
-//                .doOnCompleted(() -> preference.saveLastedUpdateTime(System.currentTimeMillis()));
+                .filter(resultItem -> resultItem.getTimeInMillisecond() > preference.getLastestUpdateTime())
+                .limit(5)
+                .doOnCompleted(() -> preference.saveLastedUpdateTime(System.currentTimeMillis()));
     }
 }

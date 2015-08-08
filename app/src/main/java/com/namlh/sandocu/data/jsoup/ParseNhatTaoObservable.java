@@ -29,7 +29,7 @@ public class ParseNhatTaoObservable extends ParseHtmlObservable {
                 .execute();
 //            doc = Jsoup.connect("https://www.nhattao.com/search/116255621/?q=nexus&t=thread&o=date&c[title_only]=1&c[location]=HCM").get();
         Document document = Jsoup.connect("https://www.nhattao.com/search/search")
-                .data("keywords", "nexus")
+                .data("keywords", keyword)
                 .data("redirect", "true")
                 .data("optinout", "optIn")
                 .data("title_only","1")
