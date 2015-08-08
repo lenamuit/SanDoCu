@@ -9,6 +9,7 @@ public class ResultItem {
     private String link;
     private String location;
     private String dateTime;
+    private long timeInMillisecond;
 
     public String getDateTime() {
         return dateTime;
@@ -40,5 +41,13 @@ public class ResultItem {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public long getTimeInMillisecond() {
+        return timeInMillisecond;
+    }
+
+    public void setTimeInMillisecond(long timeInMillisecond) {
+        this.timeInMillisecond = timeInMillisecond;
     }
 }

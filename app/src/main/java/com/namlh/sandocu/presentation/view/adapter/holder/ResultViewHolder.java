@@ -17,6 +17,8 @@ public class ResultViewHolder extends RecyclerView.ViewHolder {
 
     @Bind(R.id.tv_title)
     TextView tvTitle;
+    @Bind(R.id.tv_time)
+    TextView tvTime;
 
     public ResultViewHolder(View itemView) {
         super(itemView);
@@ -25,5 +27,6 @@ public class ResultViewHolder extends RecyclerView.ViewHolder {
 
     public void bindData(ResultViewModel model){
         tvTitle.setText(model.title);
+        tvTime.setText(model.dateTime);
     }
 }

@@ -4,6 +4,9 @@ import com.namlh.sandocu.domain.ResultItem;
 import com.namlh.sandocu.presentation.internal.annotation.PerActivity;
 import com.namlh.sandocu.presentation.model.ResultViewModel;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.inject.Inject;
 
 /**
@@ -16,7 +19,15 @@ public class ResultViewDataMapper {
     }
 
     public ResultViewModel tranform(ResultItem resultItem) {
-        ResultViewModel model = new ResultViewModel(resultItem.getTitle(), 0, resultItem.getDateTime(), resultItem.getLocation(), resultItem.getLink());
-        return model;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(resultItem.getTimeInMillisecond());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:ss");
+        String dateTime = formatter.format(calendar.getTime());
+        return new ResultViewModel(
+                resultItem.getTitle(),
+                0,
+                dateTime,
+                resultItem.getLocation(),
+                resultItem.getLink());
     }
 }

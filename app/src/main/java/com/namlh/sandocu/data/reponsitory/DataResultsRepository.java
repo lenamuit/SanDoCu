@@ -39,6 +39,7 @@ public class DataResultsRepository implements ResultsRepository {
                         item.setLink(product.getLink());
                         item.setDateTime(product.getTime());
                         item.setLocation(product.getLocation());
+                        item.setTimeInMillisecond(product.getTimeInMillisecond());
                         results.add(item);
                     }
                     return results;

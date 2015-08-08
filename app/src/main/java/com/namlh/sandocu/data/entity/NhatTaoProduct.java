@@ -11,6 +11,7 @@ public class NhatTaoProduct implements Product {
     private String status;
     private String location;
     private String dateTime;
+    private long timeInMillisecond;
     private String link;
 
     @Override
@@ -71,5 +72,13 @@ public class NhatTaoProduct implements Product {
 
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public long getTimeInMillisecond() {
+        return timeInMillisecond;
+    }
+
+    public void setTimeInMillisecond(long timeInMillisecond) {
+        this.timeInMillisecond = timeInMillisecond;
     }
 }

@@ -5,7 +5,10 @@ import com.namlh.sandocu.data.entity.Product;
 import com.namlh.sandocu.data.jsoup.ParseNhatTaoObservable;
 
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +41,7 @@ public class NhatTaoDatasource {
                             product.setDateTime(getDateTime(e));
                             product.setLocation(getLocation(e));
                             product.setLink(getLink(e));
+                            product.setTimeInMillisecond(getTimeInMillisecond(e));
                             products.add(product);
                         }
                         catch (Exception ex){
@@ -46,6 +50,25 @@ public class NhatTaoDatasource {
                     }
                     return products;
                 });
+    }
+
+    private long getTimeInMillisecond(Element e) {
+        Elements elements = e.select(".meta .DateTime");
+        if (elements.size() >0){
+            Element element = elements.get(0);
+            String sDate = element.attr("data-datestring");
+            String sTime = element.attr("data-timestring");
+            String stringTime = String.format("%s %s",sDate,sTime);
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:ss");
+            try {
+                return formatter.parse(stringTime).getTime();
+            } catch (ParseException e1) {
+                e1.printStackTrace();
+                return 0;
+            }
+        }
+        else
+            return 0;
     }
 
     private String getLink(Element e) {

@@ -32,6 +32,7 @@ public class ParseNhatTaoObservable extends ParseHtmlObservable {
                 .data("keywords", "nexus")
                 .data("redirect", "true")
                 .data("optinout", "optIn")
+                .data("title_only","1")
                 .cookies(loginForm.cookies())
                 .post();
         return document;
