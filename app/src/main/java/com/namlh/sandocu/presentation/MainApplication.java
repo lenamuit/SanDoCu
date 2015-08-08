@@ -1,6 +1,7 @@
 package com.namlh.sandocu.presentation;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.namlh.sandocu.presentation.internal.component.ApplicationComponent;
 import com.namlh.sandocu.presentation.internal.component.DaggerApplicationComponent;
@@ -27,5 +28,9 @@ public class MainApplication extends Application {
 
     public ApplicationComponent getApplicationComponent(){
         return applicationComponent;
+    }
+
+    public static MainApplication get(Context context){
+        return (MainApplication) context.getApplicationContext();
     }
 }

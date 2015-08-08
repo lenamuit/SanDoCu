@@ -18,7 +18,7 @@ public class ResultViewDataMapper {
     public ResultViewDataMapper() {
     }
 
-    public ResultViewModel tranform(ResultItem resultItem) {
+    public ResultViewModel transform(ResultItem resultItem) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(resultItem.getTimeInMillisecond());
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:ss");

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.namlh.sandocu.R;
+import com.namlh.sandocu.presentation.view.service.FinderIntentService;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -17,6 +18,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FinderIntentService.startAction(this);
     }
 
     @OnClick(R.id.btn_search)

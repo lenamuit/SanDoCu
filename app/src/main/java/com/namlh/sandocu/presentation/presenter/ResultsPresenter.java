@@ -68,7 +68,7 @@ public class ResultsPresenter extends Subscriber<List<ResultItem>> implements Pr
     public void onNext(List<ResultItem> resultItem) {
         Collection<ResultViewModel> data = new ArrayList<>();
         for (ResultItem item : resultItem) {
-            data.add(mapper.tranform(item));
+            data.add(mapper.transform(item));
         }
         resultsView.renderData(data);
     }

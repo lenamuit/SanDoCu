@@ -3,12 +3,13 @@
     package="com.namlh.sandocu" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".presentation.MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".presentation.view.activity.MainActivity"
             android:label="@string/app_name" >
@@ -19,6 +20,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.view.activity.ListResultActivity" />
+
+        <service
+            android:name=".presentation.view.service.FinderIntentService"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>
