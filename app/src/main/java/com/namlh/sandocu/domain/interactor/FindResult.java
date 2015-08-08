@@ -3,6 +3,8 @@ package com.namlh.sandocu.domain.interactor;
 import com.namlh.sandocu.domain.ResultItem;
 import com.namlh.sandocu.domain.executor.PostExecutionThread;
 import com.namlh.sandocu.domain.executor.ThreadExecutor;
+import com.namlh.sandocu.domain.reponsitory.PreferenceRepository;
+import com.namlh.sandocu.domain.reponsitory.ResultsRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,18 +18,22 @@ import rx.Observable;
 @Singleton
 @Named("FindResult")
 public class FindResult extends UseCase<ResultItem> {
+    private final PreferenceRepository preference;
+    private final ResultsRepository resultRepository;
+
     @Inject
-    public FindResult(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
+    public FindResult(ResultsRepository resultsRepository,ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread,PreferenceRepository preferenceRepository) {
         super(threadExecutor, postExecutionThread);
+        this.preference = preferenceRepository;
+        this.resultRepository = resultsRepository;
     }
 
     @Override
     protected Observable<ResultItem> buildUseCaseObservable() {
-        ResultItem test = new ResultItem();
-        test.setTitle("test item");
-        test.setLocation("HCM");
-        test.setTimeInMillisecond(System.currentTimeMillis());
-        test.setLink("http://google.com");
-        return Observable.from(new ResultItem[]{ test });
+        return resultRepository.getResults("nexus")
+                .flatMap(Observable::<ResultItem>from)
+//                .filter(resultItem -> resultItem.getTimeInMillisecond() > preference.getLastestUpdateTime())
+                .limit(5);
+//                .doOnCompleted(() -> preference.saveLastedUpdateTime(System.currentTimeMillis()));
     }
 }

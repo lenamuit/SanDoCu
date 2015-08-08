@@ -7,4 +7,5 @@ import com.namlh.sandocu.presentation.model.FinderResultModel;
  */
 public interface FinderServiceView {
     void showNotification(FinderResultModel model);
+    void onCompleted();
 }

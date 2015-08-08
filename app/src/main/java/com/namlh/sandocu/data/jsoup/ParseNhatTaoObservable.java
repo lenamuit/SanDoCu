@@ -41,6 +41,6 @@ public class ParseNhatTaoObservable extends ParseHtmlObservable {
     @WorkerThread
     @Override
     public String getCssFilter() {
-        return ".searchResult .main";
+        return ".searchResultsList .searchResult";
     }
 }

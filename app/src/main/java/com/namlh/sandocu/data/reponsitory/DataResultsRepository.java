@@ -35,6 +35,7 @@ public class DataResultsRepository implements ResultsRepository {
                     List<ResultItem> results = new ArrayList<>();
                     for (Product product : products) {
                         ResultItem item = new ResultItem();
+                        item.setId(product.getId());
                         item.setTitle(product.getTitle());
                         item.setLink(product.getLink());
                         item.setDateTime(product.getTime());

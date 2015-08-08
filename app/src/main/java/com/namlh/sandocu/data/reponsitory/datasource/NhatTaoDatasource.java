@@ -42,6 +42,7 @@ public class NhatTaoDatasource {
                             product.setLocation(getLocation(e));
                             product.setLink(getLink(e));
                             product.setTimeInMillisecond(getTimeInMillisecond(e));
+                            product.setId(getProductId(e));
                             products.add(product);
                         }
                         catch (Exception ex){
@@ -50,6 +51,11 @@ public class NhatTaoDatasource {
                     }
                     return products;
                 });
+    }
+
+    private long getProductId(Element e) {
+        String stringId = e.select(".thread").get(0).attr("id");
+        return Long.parseLong(stringId.split("-")[1]);
     }
 
     private long getTimeInMillisecond(Element e) {

@@ -5,6 +5,7 @@ package com.namlh.sandocu.domain;
  * Created by namlh on 02/08/2015.
  */
 public class ResultItem {
+    private long id;
     private String title;
     private String link;
     private String location;
@@ -49,5 +50,13 @@ public class ResultItem {
 
     public void setTimeInMillisecond(long timeInMillisecond) {
         this.timeInMillisecond = timeInMillisecond;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

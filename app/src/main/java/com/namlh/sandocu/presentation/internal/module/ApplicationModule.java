@@ -3,10 +3,13 @@ package com.namlh.sandocu.presentation.internal.module;
 import android.content.Context;
 
 import com.namlh.sandocu.data.excutor.JobExecutor;
+import com.namlh.sandocu.data.reponsitory.DataPreferenceRepository;
 import com.namlh.sandocu.data.reponsitory.DataResultsRepository;
 import com.namlh.sandocu.data.reponsitory.datasource.ResultsDatastore;
+import com.namlh.sandocu.data.reponsitory.datasource.SharePreferenceDatastore;
 import com.namlh.sandocu.domain.executor.PostExecutionThread;
 import com.namlh.sandocu.domain.executor.ThreadExecutor;
+import com.namlh.sandocu.domain.reponsitory.PreferenceRepository;
 import com.namlh.sandocu.domain.reponsitory.ResultsRepository;
 import com.namlh.sandocu.presentation.MainApplication;
 import com.namlh.sandocu.presentation.UIThread;
@@ -63,5 +66,10 @@ public class ApplicationModule {
     @Singleton
     public ResultsRepository provideResultRepository(ResultsDatastore dataStore) {
         return new DataResultsRepository(dataStore);
+    }
+    @Provides
+    @Singleton
+    public PreferenceRepository providePreferenceRepository(SharePreferenceDatastore datastore){
+        return new DataPreferenceRepository(datastore);
     }
 }

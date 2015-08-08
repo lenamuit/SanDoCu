@@ -17,7 +17,7 @@ public class FinderResultViewDataMapper {
     public FinderResultModel transform(ResultItem item){
         String title = item.getTitle();
         String description = String.format("Description: %s, at %s",item.getTitle(),item.getLocation());
-        return new FinderResultModel(title,description,item.getLink());
+        return new FinderResultModel(title,description,item.getLink(), item.getId());
     }
 
 }

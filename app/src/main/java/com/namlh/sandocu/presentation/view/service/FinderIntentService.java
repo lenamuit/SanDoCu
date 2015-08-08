@@ -1,10 +1,16 @@
 package com.namlh.sandocu.presentation.view.service;
 
 import android.app.IntentService;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
+import android.os.IBinder;
+import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
 
+import com.namlh.sandocu.R;
 import com.namlh.sandocu.presentation.MainApplication;
 import com.namlh.sandocu.presentation.internal.component.DaggerFindNewestComponent;
 import com.namlh.sandocu.presentation.internal.component.FindNewestComponent;
@@ -22,7 +28,7 @@ import javax.inject.Inject;
  * TODO: Customize class - update intent actions, extra parameters and static
  * helper methods.
  */
-public class FinderIntentService extends IntentService implements FinderServiceView {
+public class FinderIntentService extends Service implements FinderServiceView {
 
     @Inject
     FinderPresenter presenter;
@@ -33,15 +39,12 @@ public class FinderIntentService extends IntentService implements FinderServiceV
      *
      * @see IntentService
      */
-    // TODO: Customize helper method
     public static void startAction(Context context) {
         Intent intent = new Intent(context, FinderIntentService.class);
         context.startService(intent);
     }
 
-
     public FinderIntentService() {
-        super("FinderIntentService");
     }
 
     @Override
@@ -55,15 +58,37 @@ public class FinderIntentService extends IntentService implements FinderServiceV
     }
 
     @Override
-    protected void onHandleIntent(Intent intent) {
-        if (intent != null) {
-            presenter.setFinderServiceView(this);
-            presenter.findNewestResult();
-        }
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        presenter.setFinderServiceView(this);
+        presenter.findNewestResult();
+        return START_NOT_STICKY;
+    }
+
+    @Override
+    public void onDestroy() {
+        presenter.destroy();
+        super.onDestroy();
+    }
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 
     @Override
     public void showNotification(FinderResultModel model) {
-        Toast.makeText(this,model.description,Toast.LENGTH_LONG).show();
+        Notification notification = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(model.title)
+                .setContentText(model.description)
+                .build();
+        NotificationManager notificationManagerCompat = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManagerCompat.notify((int) model.id,notification);
+    }
+
+    @Override
+    public void onCompleted() {
+        this.stopSelf();
     }
 }

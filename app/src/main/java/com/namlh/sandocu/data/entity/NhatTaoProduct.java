@@ -13,6 +13,15 @@ public class NhatTaoProduct implements Product {
     private String dateTime;
     private long timeInMillisecond;
     private String link;
+    private long id;
+
+    public NhatTaoProduct() {
+    }
+
+    @Override
+    public long getId() {
+        return id;
+    }
 
     @Override
     public String getTitle() {
@@ -80,5 +89,9 @@ public class NhatTaoProduct implements Product {
 
     public void setTimeInMillisecond(long timeInMillisecond) {
         this.timeInMillisecond = timeInMillisecond;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

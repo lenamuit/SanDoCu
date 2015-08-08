@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.namlh.sandocu.domain.executor.PostExecutionThread;
 import com.namlh.sandocu.domain.executor.ThreadExecutor;
+import com.namlh.sandocu.domain.reponsitory.PreferenceRepository;
 import com.namlh.sandocu.domain.reponsitory.ResultsRepository;
 import com.namlh.sandocu.presentation.internal.module.ApplicationModule;
 import com.namlh.sandocu.presentation.navigator.INavigators;
@@ -33,4 +34,5 @@ public interface ApplicationComponent {
     PostExecutionThread postExecutionThread();
 
     ResultsRepository resultsRepository();
+    PreferenceRepository preferenceRepository();
 }

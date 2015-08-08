@@ -43,7 +43,7 @@ public class FinderPresenter extends Subscriber<ResultItem> implements Presenter
 
     @Override
     public void destroy() {
-
+        useCase.unsubscribe();
     }
 
     public void findNewestResult(){
@@ -52,12 +52,12 @@ public class FinderPresenter extends Subscriber<ResultItem> implements Presenter
 
     @Override
     public void onCompleted() {
-
+        finderServiceView.onCompleted();
     }
 
     @Override
     public void onError(Throwable e) {
-
+        finderServiceView.onCompleted();
     }
 
     @Override

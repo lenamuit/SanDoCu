@@ -5,6 +5,8 @@ import com.namlh.sandocu.domain.executor.PostExecutionThread;
 import com.namlh.sandocu.domain.executor.ThreadExecutor;
 import com.namlh.sandocu.domain.interactor.FindResult;
 import com.namlh.sandocu.domain.interactor.UseCase;
+import com.namlh.sandocu.domain.reponsitory.PreferenceRepository;
+import com.namlh.sandocu.domain.reponsitory.ResultsRepository;
 import com.namlh.sandocu.presentation.internal.annotation.PerService;
 
 import dagger.Module;
@@ -18,7 +20,10 @@ public class FindNewestModule {
 
     @Provides
     @PerService
-    public UseCase<ResultItem> provideFinderUsecase(ThreadExecutor threadExecutor, PostExecutionThread postExecution){
-        return new FindResult(threadExecutor,postExecution);
+    public UseCase<ResultItem> provideFinderUsecase(ThreadExecutor threadExecutor,
+                                                    PostExecutionThread postExecution,
+                                                    PreferenceRepository preference,
+                                                    ResultsRepository resultRepository){
+        return new FindResult(resultRepository,threadExecutor,postExecution,preference);
     }
 }
