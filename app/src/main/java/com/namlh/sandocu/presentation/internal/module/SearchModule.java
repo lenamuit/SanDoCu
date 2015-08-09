@@ -30,4 +30,10 @@ public class SearchModule {
     public UseCase<List<ResultItem>> provideResultItemUseCase(ResultsRepository reponsitory, ThreadExecutor threadExexutor, PostExecutionThread postThreadExecution) {
         return new GetResults(keyword, reponsitory, threadExexutor, postThreadExecution);
     }
+
+    @Provides
+    @PerActivity
+    public String provideKeyword(){
+        return keyword;
+    }
 }

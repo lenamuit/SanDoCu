@@ -16,4 +16,5 @@ import dagger.Component;
 public interface SearchComponent extends ActivityComponent {
     void inject(ListResultFragment fragment);
     void inject(ListResultActivity activity);
+    String keyword();
 }

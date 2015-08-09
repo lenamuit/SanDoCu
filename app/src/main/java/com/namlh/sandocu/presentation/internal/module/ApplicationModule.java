@@ -15,6 +15,7 @@ import com.namlh.sandocu.presentation.MainApplication;
 import com.namlh.sandocu.presentation.UIThread;
 import com.namlh.sandocu.presentation.navigator.INavigators;
 import com.namlh.sandocu.presentation.navigator.Navigators;
+import com.namlh.sandocu.presentation.view.misc.HunterAlarmManager;
 import com.squareup.otto.Bus;
 import com.squareup.otto.ThreadEnforcer;
 
@@ -71,5 +72,11 @@ public class ApplicationModule {
     @Singleton
     public PreferenceRepository providePreferenceRepository(SharePreferenceDatastore datastore){
         return new DataPreferenceRepository(datastore);
+    }
+
+    @Provides
+    @Singleton
+    public HunterAlarmManager provideHunterAlarmManager(){
+        return new HunterAlarmManager(application);
     }
 }

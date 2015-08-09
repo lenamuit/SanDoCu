@@ -3,7 +3,7 @@ package com.namlh.sandocu.presentation.internal.module;
 import com.namlh.sandocu.domain.ResultItem;
 import com.namlh.sandocu.domain.executor.PostExecutionThread;
 import com.namlh.sandocu.domain.executor.ThreadExecutor;
-import com.namlh.sandocu.domain.interactor.FindResult;
+import com.namlh.sandocu.domain.interactor.HuntResult;
 import com.namlh.sandocu.domain.interactor.UseCase;
 import com.namlh.sandocu.domain.reponsitory.PreferenceRepository;
 import com.namlh.sandocu.domain.reponsitory.ResultsRepository;
@@ -16,7 +16,7 @@ import dagger.Provides;
  * Created by namlh on 08/08/2015.
  */
 @Module
-public class FindNewestModule {
+public class HunterModule {
 
     @Provides
     @PerService
@@ -24,6 +24,6 @@ public class FindNewestModule {
                                                     PostExecutionThread postExecution,
                                                     PreferenceRepository preference,
                                                     ResultsRepository resultRepository){
-        return new FindResult(resultRepository,threadExecutor,postExecution,preference);
+        return new HuntResult(resultRepository,threadExecutor,postExecution,preference);
     }
 }

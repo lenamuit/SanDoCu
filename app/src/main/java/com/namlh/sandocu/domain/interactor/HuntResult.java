@@ -17,12 +17,12 @@ import rx.Observable;
  */
 @Singleton
 @Named("FindResult")
-public class FindResult extends UseCase<ResultItem> {
+public class HuntResult extends UseCase<ResultItem> {
     private final PreferenceRepository preference;
     private final ResultsRepository resultRepository;
 
     @Inject
-    public FindResult(ResultsRepository resultsRepository,ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread,PreferenceRepository preferenceRepository) {
+    public HuntResult(ResultsRepository resultsRepository, ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, PreferenceRepository preferenceRepository) {
         super(threadExecutor, postExecutionThread);
         this.preference = preferenceRepository;
         this.resultRepository = resultsRepository;

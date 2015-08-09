@@ -3,8 +3,8 @@ package com.namlh.sandocu.presentation.presenter;
 import com.namlh.sandocu.domain.ResultItem;
 import com.namlh.sandocu.domain.interactor.UseCase;
 import com.namlh.sandocu.presentation.internal.annotation.PerService;
-import com.namlh.sandocu.presentation.mapper.FinderResultViewDataMapper;
-import com.namlh.sandocu.presentation.view.FinderServiceView;
+import com.namlh.sandocu.presentation.mapper.HunterResultViewDataMapper;
+import com.namlh.sandocu.presentation.view.HunterServiceView;
 
 import javax.inject.Inject;
 
@@ -14,20 +14,21 @@ import rx.Subscriber;
  * Created by namlh on 08/08/2015.
  */
 @PerService
-public class FinderPresenter extends Subscriber<ResultItem> implements Presenter{
+public class HunterPresenter extends Subscriber<ResultItem> implements Presenter{
 
     private final UseCase<ResultItem> useCase;
-    private final FinderResultViewDataMapper mapper;
-    private FinderServiceView finderServiceView;
+    private final HunterResultViewDataMapper mapper;
+    private HunterServiceView hunterServiceView;
 
     @Inject
-    public FinderPresenter(UseCase<ResultItem> useCase,FinderResultViewDataMapper mapper){
+    public HunterPresenter(UseCase<ResultItem> useCase,
+                           HunterResultViewDataMapper mapper){
         this.useCase = useCase;
         this.mapper = mapper;
     }
 
-    public void setFinderServiceView(FinderServiceView finderServiceView){
-        this.finderServiceView = finderServiceView;
+    public void setHunterServiceView(HunterServiceView hunterServiceView){
+        this.hunterServiceView = hunterServiceView;
     }
 
 
@@ -52,16 +53,16 @@ public class FinderPresenter extends Subscriber<ResultItem> implements Presenter
 
     @Override
     public void onCompleted() {
-        finderServiceView.onCompleted();
+        hunterServiceView.onCompleted();
     }
 
     @Override
     public void onError(Throwable e) {
-        finderServiceView.onCompleted();
+        hunterServiceView.onCompleted();
     }
 
     @Override
     public void onNext(ResultItem resultItem) {
-        finderServiceView.showNotification(mapper.transform(resultItem));
+        hunterServiceView.showNotification(mapper.transform(resultItem));
     }
 }

@@ -8,6 +8,10 @@ public interface PreferenceRepository {
     long getLastestUpdateTime();
     void saveLastedUpdateTime(long timeInMillisecond);
 
-    void saveKeyword(String value);
     String getKeyword();
+    void addKeyword(String key);
+    void removeKeyword(String key);
+    boolean isEmptyKeyword();
+
+
 }

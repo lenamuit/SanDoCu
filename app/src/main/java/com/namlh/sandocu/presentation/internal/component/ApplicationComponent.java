@@ -10,6 +10,7 @@ import com.namlh.sandocu.presentation.internal.module.ApplicationModule;
 import com.namlh.sandocu.presentation.navigator.INavigators;
 import com.namlh.sandocu.presentation.view.activity.BaseActivity;
 import com.namlh.sandocu.presentation.view.fragment.BaseFragment;
+import com.namlh.sandocu.presentation.view.misc.HunterAlarmManager;
 import com.squareup.otto.Bus;
 
 import javax.inject.Singleton;
@@ -35,4 +36,6 @@ public interface ApplicationComponent {
 
     ResultsRepository resultsRepository();
     PreferenceRepository preferenceRepository();
+
+    HunterAlarmManager hunterAlarmManager();
 }

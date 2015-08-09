@@ -13,4 +13,8 @@ public interface ResultsView extends LoadDataView {
 
     void viewDetail(ResultViewModel resultViewModel);
 
+    void startAlarmService();
+
+    void stopAlarmService();
+
 }

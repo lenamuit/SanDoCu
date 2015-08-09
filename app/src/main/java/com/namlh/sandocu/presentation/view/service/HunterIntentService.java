@@ -12,12 +12,12 @@ import android.support.v4.app.NotificationCompat;
 
 import com.namlh.sandocu.R;
 import com.namlh.sandocu.presentation.MainApplication;
-import com.namlh.sandocu.presentation.internal.component.DaggerFindNewestComponent;
-import com.namlh.sandocu.presentation.internal.component.FindNewestComponent;
-import com.namlh.sandocu.presentation.internal.module.FindNewestModule;
-import com.namlh.sandocu.presentation.model.FinderResultModel;
-import com.namlh.sandocu.presentation.presenter.FinderPresenter;
-import com.namlh.sandocu.presentation.view.FinderServiceView;
+import com.namlh.sandocu.presentation.internal.component.DaggerHunterComponent;
+import com.namlh.sandocu.presentation.internal.component.HunterComponent;
+import com.namlh.sandocu.presentation.internal.module.HunterModule;
+import com.namlh.sandocu.presentation.model.HunterResultModel;
+import com.namlh.sandocu.presentation.presenter.HunterPresenter;
+import com.namlh.sandocu.presentation.view.HunterServiceView;
 
 import javax.inject.Inject;
 
@@ -28,10 +28,10 @@ import javax.inject.Inject;
  * TODO: Customize class - update intent actions, extra parameters and static
  * helper methods.
  */
-public class FinderIntentService extends Service implements FinderServiceView {
+public class HunterIntentService extends Service implements HunterServiceView {
 
     @Inject
-    FinderPresenter presenter;
+    HunterPresenter presenter;
 
     /**
      * Starts this service to perform action Foo with the given parameters. If
@@ -40,27 +40,35 @@ public class FinderIntentService extends Service implements FinderServiceView {
      * @see IntentService
      */
     public static void startAction(Context context) {
-        Intent intent = new Intent(context, FinderIntentService.class);
+        Intent intent = new Intent(context, HunterIntentService.class);
         context.startService(intent);
     }
 
-    public FinderIntentService() {
+    public HunterIntentService() {
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        FindNewestComponent component = DaggerFindNewestComponent.builder()
+        HunterComponent component = DaggerHunterComponent.builder()
                 .applicationComponent(MainApplication.get(this).getApplicationComponent())
-                .findNewestModule(new FindNewestModule())
+                .hunterModule(new HunterModule())
                 .build();
         component.inject(this);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        presenter.setFinderServiceView(this);
+        presenter.setHunterServiceView(this);
         presenter.findNewestResult();
+        Notification notification = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("Test service")
+                .setContentText("test service....")
+                .setDefaults(Notification.DEFAULT_ALL)
+                .build();
+        NotificationManager notificationManagerCompat = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManagerCompat.notify(1, notification);
         return START_NOT_STICKY;
     }
 
@@ -77,11 +85,12 @@ public class FinderIntentService extends Service implements FinderServiceView {
     }
 
     @Override
-    public void showNotification(FinderResultModel model) {
+    public void showNotification(HunterResultModel model) {
         Notification notification = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(model.title)
                 .setContentText(model.description)
+                .setDefaults(Notification.DEFAULT_ALL)
                 .build();
         NotificationManager notificationManagerCompat = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManagerCompat.notify((int) model.id,notification);

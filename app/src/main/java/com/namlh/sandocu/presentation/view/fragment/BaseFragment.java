@@ -9,6 +9,7 @@ import com.namlh.sandocu.presentation.MainApplication;
 import com.namlh.sandocu.presentation.internal.component.ApplicationComponent;
 import com.namlh.sandocu.presentation.navigator.INavigators;
 import com.namlh.sandocu.presentation.view.activity.BaseActivity;
+import com.namlh.sandocu.presentation.view.misc.HunterAlarmManager;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
@@ -26,6 +27,8 @@ public abstract class BaseFragment extends Fragment {
     Bus mBus;
     @Inject
     INavigators navigators;
+    @Inject
+    HunterAlarmManager alarmManager;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {

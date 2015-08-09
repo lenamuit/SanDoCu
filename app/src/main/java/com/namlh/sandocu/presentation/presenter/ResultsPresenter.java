@@ -2,6 +2,7 @@ package com.namlh.sandocu.presentation.presenter;
 
 import com.namlh.sandocu.domain.ResultItem;
 import com.namlh.sandocu.domain.interactor.UseCase;
+import com.namlh.sandocu.domain.reponsitory.PreferenceRepository;
 import com.namlh.sandocu.presentation.internal.annotation.PerActivity;
 import com.namlh.sandocu.presentation.mapper.ResultViewDataMapper;
 import com.namlh.sandocu.presentation.model.ResultViewModel;
@@ -23,12 +24,43 @@ public class ResultsPresenter extends Subscriber<List<ResultItem>> implements Pr
 
     private final UseCase<List<ResultItem>> useCase;
     private final ResultViewDataMapper mapper;
+    private final PreferenceRepository preference;
     private ResultsView resultsView;
 
     @Inject
-    public ResultsPresenter(UseCase<List<ResultItem>> resultUsecase, ResultViewDataMapper mapper) {
+    public ResultsPresenter(UseCase<List<ResultItem>> resultUsecase,
+                            ResultViewDataMapper mapper,
+                            PreferenceRepository preferenceRepository) {
         this.useCase = resultUsecase;
         this.mapper = mapper;
+        this.preference = preferenceRepository;
+    }
+
+
+    public void getResults() {
+        useCase.execute(this);
+    }
+
+    public void setResultsView(ResultsView view) {
+        this.resultsView = view;
+    }
+
+    public boolean isHunting(String keyword){
+        return preference.getKeyword() !=null && preference.getKeyword()
+                .contains(keyword);
+    }
+
+    public void huntKeyword(String keyword){
+        preference.addKeyword(keyword);
+        preference.saveLastedUpdateTime(System.currentTimeMillis());
+        resultsView.startAlarmService();
+    }
+
+    public void unHuntKeyword(String keyword){
+        preference.removeKeyword(keyword);
+        if (preference.isEmptyKeyword()){
+            resultsView.stopAlarmService();
+        }
     }
 
     @Override
@@ -46,13 +78,6 @@ public class ResultsPresenter extends Subscriber<List<ResultItem>> implements Pr
         useCase.unsubscribe();
     }
 
-    public void getResults() {
-        useCase.execute(this);
-    }
-
-    public void setResultsView(ResultsView view) {
-        this.resultsView = view;
-    }
 
     @Override
     public void onCompleted() {

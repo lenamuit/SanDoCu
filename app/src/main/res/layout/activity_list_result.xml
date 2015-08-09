@@ -7,12 +7,4 @@
         android:name="com.namlh.sandocu.presentation.view.fragment.ListResultFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    <Button
-        android:id="@+id/btn_sanhang"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="8dp"
-        android:text="Săn món này"/>
 </RelativeLayout>

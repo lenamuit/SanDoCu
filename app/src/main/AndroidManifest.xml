@@ -22,7 +22,7 @@
         <activity android:name=".presentation.view.activity.ListResultActivity" />
 
         <service
-            android:name=".presentation.view.service.FinderIntentService"
+            android:name=".presentation.view.service.HunterIntentService"
             android:exported="false" >
         </service>
     </application>

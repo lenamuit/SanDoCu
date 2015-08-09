@@ -44,8 +44,7 @@ public class NhatTaoDatasource {
                             product.setTimeInMillisecond(getTimeInMillisecond(e));
                             product.setId(getProductId(e));
                             products.add(product);
-                        }
-                        catch (Exception ex){
+                        } catch (Exception ex) {
                             ex.printStackTrace();
                         }
                     }
@@ -63,15 +62,26 @@ public class NhatTaoDatasource {
         if (elements.size() >0){
             Element element = elements.get(0);
             String sDate = element.attr("data-datestring");
-            String sTime = element.attr("data-timestring");
-            String stringTime = String.format("%s %s",sDate,sTime);
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:ss");
-            try {
-                return formatter.parse(stringTime).getTime();
-            } catch (ParseException e1) {
-                e1.printStackTrace();
-                return 0;
+            if (sDate !=null && !sDate.isEmpty()){
+                String sTime = element.attr("data-timestring");
+                String stringTime = String.format("%s %s",sDate,sTime);
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:ss");
+                try {
+                    return formatter.parse(stringTime).getTime();
+                } catch (ParseException e1) {
+                    e1.printStackTrace();
+                }
             }
+            else {
+                String title = element.attr("title");
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy 'at' hh:ss");
+                try {
+                    return formatter.parse(title).getTime();
+                } catch (ParseException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            return 0;
         }
         else
             return 0;

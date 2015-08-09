@@ -1,7 +1,5 @@
 package com.namlh.sandocu.presentation.view;
 
-import android.content.Context;
-
 /**
  * Created by namlh on 03/08/2015.
  */
@@ -36,5 +34,5 @@ public interface LoadDataView {
     /**
      * Get a {@link android.content.Context}.
      */
-    Context getContext();
+//    Context getContext();
 }
