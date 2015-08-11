@@ -1,5 +1,6 @@
 package com.namlh.sandocu.presentation.view.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -12,6 +13,7 @@ import com.squareup.otto.Bus;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by namlh on 01/08/2015.
@@ -40,6 +42,11 @@ public abstract class BaseActivity extends AppCompatActivity{
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     protected ApplicationComponent getApplicationComponent(){

@@ -41,6 +41,7 @@ public class DataResultsRepository implements ResultsRepository {
                         item.setDateTime(product.getTime());
                         item.setLocation(product.getLocation());
                         item.setTimeInMillisecond(product.getTimeInMillisecond());
+                        item.setImageUrl(product.getImageUrl().replace("64/64","128/128"));
                         results.add(item);
                     }
                     return results;

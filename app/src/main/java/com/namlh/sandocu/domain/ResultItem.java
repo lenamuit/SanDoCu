@@ -11,6 +11,7 @@ public class ResultItem {
     private String location;
     private String dateTime;
     private long timeInMillisecond;
+    private String imageUrl;
 
     public String getDateTime() {
         return dateTime;
@@ -58,5 +59,13 @@ public class ResultItem {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

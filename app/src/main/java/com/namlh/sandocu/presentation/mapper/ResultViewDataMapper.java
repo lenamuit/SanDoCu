@@ -28,6 +28,7 @@ public class ResultViewDataMapper {
                 0,
                 dateTime,
                 resultItem.getLocation(),
-                resultItem.getLink());
+                resultItem.getLink(),
+                resultItem.getImageUrl());
     }
 }

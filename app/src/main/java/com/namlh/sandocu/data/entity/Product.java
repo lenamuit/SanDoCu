@@ -16,4 +16,6 @@ public interface Product {
     String getLink();
 
     long getTimeInMillisecond();
+
+    String getImageUrl();
 }

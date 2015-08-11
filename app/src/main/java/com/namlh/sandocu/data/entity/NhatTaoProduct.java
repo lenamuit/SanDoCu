@@ -14,6 +14,7 @@ public class NhatTaoProduct implements Product {
     private long timeInMillisecond;
     private String link;
     private long id;
+    private String imageUrl;
 
     public NhatTaoProduct() {
     }
@@ -87,11 +88,20 @@ public class NhatTaoProduct implements Product {
         return timeInMillisecond;
     }
 
+    @Override
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
     public void setTimeInMillisecond(long timeInMillisecond) {
         this.timeInMillisecond = timeInMillisecond;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

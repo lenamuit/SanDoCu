@@ -43,6 +43,7 @@ public class NhatTaoDatasource {
                             product.setLink(getLink(e));
                             product.setTimeInMillisecond(getTimeInMillisecond(e));
                             product.setId(getProductId(e));
+                            product.setImageUrl(getImageUrl(e));
                             products.add(product);
                         } catch (Exception ex) {
                             ex.printStackTrace();
@@ -50,6 +51,10 @@ public class NhatTaoDatasource {
                     }
                     return products;
                 });
+    }
+
+    private String getImageUrl(Element e) {
+        return e.select(".avatarContainer .avatar img").get(0).attr("src");
     }
 
     private long getProductId(Element e) {
