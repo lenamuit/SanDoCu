@@ -12,6 +12,7 @@ public class ResultItem {
     private String dateTime;
     private long timeInMillisecond;
     private String imageUrl;
+    private double price;
 
     public String getDateTime() {
         return dateTime;
@@ -67,5 +68,13 @@ public class ResultItem {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

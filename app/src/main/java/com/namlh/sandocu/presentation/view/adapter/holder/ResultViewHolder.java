@@ -23,6 +23,8 @@ public class ResultViewHolder extends RecyclerView.ViewHolder {
     TextView tvTime;
     @Bind(R.id.img_logo)
     ImageView imgLogo;
+    @Bind(R.id.tv_price)
+    TextView tvPrice;
 
     public ResultViewHolder(View itemView) {
         super(itemView);
@@ -33,6 +35,7 @@ public class ResultViewHolder extends RecyclerView.ViewHolder {
         tvTitle.setText(model.title);
         tvTime.setText(model.dateTime);
         Picasso.with(itemView.getContext()).load(model.logoUrl).into(imgLogo);
+        tvPrice.setText(model.price);
 
     }
 }

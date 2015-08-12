@@ -44,6 +44,7 @@ public class NhatTaoDatasource {
                             product.setTimeInMillisecond(getTimeInMillisecond(e));
                             product.setId(getProductId(e));
                             product.setImageUrl(getImageUrl(e));
+                            product.setPrice(getPrice(e));
                             products.add(product);
                         } catch (Exception ex) {
                             ex.printStackTrace();
@@ -51,6 +52,17 @@ public class NhatTaoDatasource {
                     }
                     return products;
                 });
+    }
+
+    private double getPrice(Element e) {
+        Elements priceElements = e.select(".meta .classified_thread_list_price .text");
+        if (priceElements.size() >0){
+            String price = priceElements.get(0).text()
+                    .replace(",","")
+                    .replace(" VND","");
+            return Double.parseDouble(price);
+        }
+        return 0;
     }
 
     private String getImageUrl(Element e) {
