@@ -7,6 +7,7 @@ import com.namlh.sandocu.domain.interactor.HuntResult;
 import com.namlh.sandocu.domain.interactor.UseCase;
 import com.namlh.sandocu.domain.reponsitory.PreferenceRepository;
 import com.namlh.sandocu.domain.reponsitory.ResultsRepository;
+import com.namlh.sandocu.domain.reponsitory.SQLiteRepository;
 import com.namlh.sandocu.presentation.internal.annotation.PerService;
 
 import dagger.Module;
@@ -23,7 +24,8 @@ public class HunterModule {
     public UseCase<ResultItem> provideFinderUsecase(ThreadExecutor threadExecutor,
                                                     PostExecutionThread postExecution,
                                                     PreferenceRepository preference,
-                                                    ResultsRepository resultRepository){
-        return new HuntResult(resultRepository,threadExecutor,postExecution,preference);
+                                                    ResultsRepository resultRepository,
+                                                    SQLiteRepository sqliteRepository){
+        return new HuntResult(resultRepository,threadExecutor,postExecution,preference,sqliteRepository);
     }
 }

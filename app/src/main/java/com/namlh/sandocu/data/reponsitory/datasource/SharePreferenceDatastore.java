@@ -1,6 +1,5 @@
 package com.namlh.sandocu.data.reponsitory.datasource;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 
 import javax.inject.Inject;
@@ -15,8 +14,8 @@ public class SharePreferenceDatastore {
     private final SharedPreferences sharePreference;
 
     @Inject
-    public SharePreferenceDatastore(Context context){
-        this.sharePreference = context.getSharedPreferences("sandocu_pref",Context.MODE_PRIVATE);
+    public SharePreferenceDatastore(SharedPreferences sharedPreferences){
+        this.sharePreference = sharedPreferences;
     }
 
     public void saveLong(String key, long value){

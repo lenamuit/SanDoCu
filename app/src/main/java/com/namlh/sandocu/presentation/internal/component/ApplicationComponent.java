@@ -6,6 +6,7 @@ import com.namlh.sandocu.domain.executor.PostExecutionThread;
 import com.namlh.sandocu.domain.executor.ThreadExecutor;
 import com.namlh.sandocu.domain.reponsitory.PreferenceRepository;
 import com.namlh.sandocu.domain.reponsitory.ResultsRepository;
+import com.namlh.sandocu.domain.reponsitory.SQLiteRepository;
 import com.namlh.sandocu.presentation.internal.module.ApplicationModule;
 import com.namlh.sandocu.presentation.navigator.INavigators;
 import com.namlh.sandocu.presentation.view.activity.BaseActivity;
@@ -38,4 +39,6 @@ public interface ApplicationComponent {
     PreferenceRepository preferenceRepository();
 
     HunterAlarmManager hunterAlarmManager();
+
+    SQLiteRepository sqliteRepository();
 }

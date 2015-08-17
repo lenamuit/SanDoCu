@@ -1,16 +1,21 @@
 package com.namlh.sandocu.presentation.internal.module;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 
+import com.namlh.sandocu.data.dao.model.DaoMaster;
 import com.namlh.sandocu.data.excutor.JobExecutor;
 import com.namlh.sandocu.data.reponsitory.DataPreferenceRepository;
 import com.namlh.sandocu.data.reponsitory.DataResultsRepository;
+import com.namlh.sandocu.data.reponsitory.DataSQLiteRepository;
 import com.namlh.sandocu.data.reponsitory.datasource.ResultsDatastore;
 import com.namlh.sandocu.data.reponsitory.datasource.SharePreferenceDatastore;
 import com.namlh.sandocu.domain.executor.PostExecutionThread;
 import com.namlh.sandocu.domain.executor.ThreadExecutor;
 import com.namlh.sandocu.domain.reponsitory.PreferenceRepository;
 import com.namlh.sandocu.domain.reponsitory.ResultsRepository;
+import com.namlh.sandocu.domain.reponsitory.SQLiteRepository;
 import com.namlh.sandocu.presentation.MainApplication;
 import com.namlh.sandocu.presentation.UIThread;
 import com.namlh.sandocu.presentation.navigator.INavigators;
@@ -78,5 +83,23 @@ public class ApplicationModule {
     @Singleton
     public HunterAlarmManager provideHunterAlarmManager(){
         return new HunterAlarmManager(application);
+    }
+
+    @Provides
+    @Singleton
+    public SQLiteDatabase privideSQLiteDatabase(){
+        return new DaoMaster.DevOpenHelper(application,"sandocu",null).getWritableDatabase();
+    }
+
+    @Provides
+    @Singleton
+    public SharedPreferences provideSharedPreferences(){
+        return application.getSharedPreferences("sandocu_pref", Context.MODE_PRIVATE);
+    }
+
+    @Provides
+    @Singleton
+    public SQLiteRepository provideSQLiteRepository(SQLiteDatabase db){
+        return new DataSQLiteRepository(db);
     }
 }

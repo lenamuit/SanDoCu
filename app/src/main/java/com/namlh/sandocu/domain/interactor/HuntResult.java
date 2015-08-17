@@ -5,6 +5,7 @@ import com.namlh.sandocu.domain.executor.PostExecutionThread;
 import com.namlh.sandocu.domain.executor.ThreadExecutor;
 import com.namlh.sandocu.domain.reponsitory.PreferenceRepository;
 import com.namlh.sandocu.domain.reponsitory.ResultsRepository;
+import com.namlh.sandocu.domain.reponsitory.SQLiteRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,12 +21,18 @@ import rx.Observable;
 public class HuntResult extends UseCase<ResultItem> {
     private final PreferenceRepository preference;
     private final ResultsRepository resultRepository;
+    private final SQLiteRepository sqliteRepository;
 
     @Inject
-    public HuntResult(ResultsRepository resultsRepository, ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, PreferenceRepository preferenceRepository) {
+    public HuntResult(ResultsRepository resultsRepository,
+                      ThreadExecutor threadExecutor,
+                      PostExecutionThread postExecutionThread,
+                      PreferenceRepository preferenceRepository,
+                      SQLiteRepository sqliteRepository) {
         super(threadExecutor, postExecutionThread);
         this.preference = preferenceRepository;
         this.resultRepository = resultsRepository;
+        this.sqliteRepository = sqliteRepository;
     }
 
     @Override
@@ -33,7 +40,7 @@ public class HuntResult extends UseCase<ResultItem> {
         return resultRepository.getResults(preference.getKeyword())
                 .flatMap(Observable::<ResultItem>from)
                 .filter(resultItem -> resultItem.getTimeInMillisecond() > preference.getLastestUpdateTime())
-                .limit(5)
+                .doOnEach(notification -> sqliteRepository.saveResultItem((ResultItem) notification.getValue()))
                 .doOnCompleted(() -> preference.saveLastedUpdateTime(System.currentTimeMillis()));
     }
 }
